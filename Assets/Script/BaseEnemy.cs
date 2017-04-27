@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
 {
+    public Vector3 startingPos;
 	public float damage;
 	public float curDamage;
 	public float health;
 	public float curHealth;
-	public float speed;
-	public string name;
 	public Transform selectedTarget;
 
 	public int armor;
@@ -17,16 +16,4 @@ public class BaseEnemy : MonoBehaviour
 	public int actionPoints;
 	public int curAction_points;
 
-
-    // Use this for initialization
-    void Start()
-    {
-		
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

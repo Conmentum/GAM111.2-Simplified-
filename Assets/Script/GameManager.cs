@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public TurnStates curState;
     //Used in PhaseStateHandler
     public string hero;
-    public GameObject heroGameObject;
+    public GameObject activeHero;
     public GameObject targetGameObject;
     //public List<PhaseStateHandeler> actionList = new List<PhaseStateHandler>();
     public List<GameObject> herosIn_Battle = new List<GameObject>();
@@ -37,20 +37,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void PhaseStateHandler()
     {
+        phase_Text.text = curState.ToString();
         Debug.Log(curState);
         if (curState == TurnStates.Standby)
         {
+            action_Panel.SetActive(false);
+            targetSelect_Panel.SetActive(false);
+            phase_Panel.SetActive(true);
             //Start event here for all characters to start their ActionCooldowns
             BaseHero[] heros = GameObject.FindObjectsOfType<BaseHero>();
             foreach(BaseHero hero in heros)
             {
                 hero.GetComponent<BaseHero>().startCoolDown();
             }
-            phase_Text.text = curState.ToString();
+            
         }
         if (curState == TurnStates.SelectingTarget)
         {
-            Debug.Log("How is this working??");
             phase_Text.text = "Select A Target";
             targetSelect_Panel.SetActive(true);
         }
@@ -63,7 +66,6 @@ public class GameManager : MonoBehaviour
         {
             action_Panel.SetActive(false);
             phase_Panel.SetActive(true);
-            phase_Text.text = curState.ToString() + "!";
         }
         if (curState == TurnStates.End)
         {
@@ -107,18 +109,21 @@ public class GameManager : MonoBehaviour
 	}
 	public void SelectEnemyTarget(){
 		curTarget = FindObjectOfType<BaseEnemy> ().gameObject;
+        curState = TurnStates.SelectingActions;
 	}
 
 	public void SelectHero1(){
 		curTarget = GameObject.FindGameObjectWithTag("Hero1");
-	}
+        curState = TurnStates.SelectingActions;
+    }
 
 	public void SelectHero2(){
 		curTarget = GameObject.FindGameObjectWithTag ("Hero2");
-	}
+        curState = TurnStates.SelectingActions;
+    }
 
 	public void SelectHero3(){
-		curTarget = GameObject.FindGameObjectWithTag ("Hero3");
-	
-	}
+        curTarget = GameObject.FindGameObjectWithTag ("Hero3");
+        curState = TurnStates.SelectingActions;
+    }
 }

@@ -21,18 +21,13 @@ public class BaseHero : MonoBehaviour
     public int armor;
     public int strength;
 	public GameObject buttonIn_UI;
+    public BaseHero friendly_Target;
+    public BaseEnemy enemy_Target;
+    public GameObject target;
 
-    // Use this for initialization
-    void Start()
-    {
-		
-    }
+    public float Max_actionCoolDown;
+    public float ActionCooldown;
 
-    // Update is called once per frame
-	void Update()
-    {
-		targetedChar = FindObjectOfType<GameManager> ().curTarget;
-    }
     public void TakeDamage()
     {
         health -= damage;
@@ -46,5 +41,25 @@ public class BaseHero : MonoBehaviour
     {
         GetComponent<HeroStateMechine>().curHeroState = HeroStateMechine.HeroStates.Waiting;
         GetComponent<HeroStateMechine>().StartCooldown = true;
+    }
+    public void FindTarget()
+    {
+        targetedChar = FindObjectOfType<GameManager>().curTarget;
+        friendly_Target = targetedChar.GetComponent<BaseHero>();
+
+        if (friendly_Target == null)
+        {
+            enemy_Target = targetedChar.GetComponent<BaseEnemy>();
+        }
+
+        if (friendly_Target != null)
+        {
+            target = friendly_Target.gameObject;
+            enemy_Target = null;
+        }
+        else if (friendly_Target == null)
+        {
+            target = enemy_Target.gameObject;
+        }
     }
 }

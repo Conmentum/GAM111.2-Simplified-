@@ -8,7 +8,7 @@ public class GameStates : MonoBehaviour {
     {
         Start,
         Standby,
-        SelectingAttackers,
+        SelectingTarget,
         SelectingActions,
         Battle,
         SurplusActions,
@@ -21,6 +21,5 @@ public class GameStates : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 }
