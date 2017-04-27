@@ -9,6 +9,7 @@ public class BaseHero : MonoBehaviour
     public Text nameIn_UI;
     public Text HPtext;
     public Text APtext;
+	public Text nameInUI_asTarget;
     public string hero_Name;
     public float damage;
     public float health;
@@ -24,7 +25,7 @@ public class BaseHero : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		
     }
 
     // Update is called once per frame

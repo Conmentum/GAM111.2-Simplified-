@@ -6,6 +6,7 @@ public class DamagerDealer : BaseHero {
 
 	// Use this for initialization
 	void Start () {
+		nameInUI_asTarget.text = hero_Name;
         health = strength * armor;
         curHealth = health;
         action_Points = 100;

@@ -11,14 +11,15 @@ public class EnemyStateMechine : MonoBehaviour {
     {
         Processing,
         AddToList,
-        Waiting2,
+        Waiting,
         SelectingAction
 
     }
+	public EnemyTurnState eTurnState;
 
 	// Use this for initialization
 	void Start () {
-		
+		eTurnState = EnemyTurnState.Processing;
 	}
 	
 	// Update is called once per frame

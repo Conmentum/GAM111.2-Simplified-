@@ -20,20 +20,13 @@ public class GameManager : MonoBehaviour
     //public List<PhaseStateHandeler> actionList = new List<PhaseStateHandler>();
     public List<GameObject> herosIn_Battle = new List<GameObject>();
     public List<GameObject> enemiesIn_Battle = new List<GameObject>();
+	//Used for target selection UI
+
 
     // Use this for initialization
     void Start()
     {
-        //Int UI
-        phase_Text.text = curState.ToString();
-        curState = TurnStates.Start;
-        status_Panel.SetActive(true);
-        phase_Panel.SetActive(true);
-        action_Panel.SetActive(false);
-        targetSelect_Panel.SetActive(false);
-        //Look for Objects
-        enemiesIn_Battle.AddRange (GameObject.FindGameObjectsWithTag("Enemy"));
-        herosIn_Battle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
+		SetStartingUI ();
     }
     private void Update()
     {
@@ -82,6 +75,7 @@ public class GameManager : MonoBehaviour
         SelectingTarget,
         SelectingActions,
         FIGHT,
+		EnemyTurn,	
         End,
     }
 
@@ -92,4 +86,20 @@ public class GameManager : MonoBehaviour
             curState = TurnStates.Standby;
         }
     }
+
+	public void SetStartingUI()
+	{
+		//Int UI
+		phase_Text.text = curState.ToString();
+		curState = TurnStates.Start;
+		status_Panel.SetActive(true);
+		phase_Panel.SetActive(true);
+		action_Panel.SetActive(false);
+		targetSelect_Panel.SetActive(false);
+		//Look for Objects
+		enemiesIn_Battle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+		herosIn_Battle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
+
+		//Used For TargetPanel
+	}
 }
