@@ -10,17 +10,17 @@ public class BaseHero : MonoBehaviour
     public Text HPtext;
     public Text APtext;
 	public Text nameInUI_asTarget;
+	public GameObject targetedChar;
     public string hero_Name;
     public float damage;
     public float health;
     public float curHealth;
-    public float action_Points;
-    public float curAction_Points;
+	public int action_Points;
+    public int curAction_Points;
     public float speed;
     public int armor;
     public int strength;
-    //attack1
-    //attack2
+	public GameObject buttonIn_UI;
 
     // Use this for initialization
     void Start()
@@ -29,9 +29,9 @@ public class BaseHero : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+	void Update()
     {
-        
+		targetedChar = FindObjectOfType<GameManager> ().curTarget;
     }
     public void TakeDamage()
     {

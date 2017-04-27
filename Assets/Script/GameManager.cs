@@ -20,17 +20,19 @@ public class GameManager : MonoBehaviour
     //public List<PhaseStateHandeler> actionList = new List<PhaseStateHandler>();
     public List<GameObject> herosIn_Battle = new List<GameObject>();
     public List<GameObject> enemiesIn_Battle = new List<GameObject>();
-	//Used for target selection UI
-
+	//Used for target selection from UI
+	public GameObject curTarget;
 
     // Use this for initialization
     void Start()
     {
+		curTarget = null;	
 		SetStartingUI ();
     }
     private void Update()
     {
         PhaseStateHandler();
+		Debug.Log (curTarget);
     }
     // Update is called once per frame
     void PhaseStateHandler()
@@ -101,5 +103,22 @@ public class GameManager : MonoBehaviour
 		herosIn_Battle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
 
 		//Used For TargetPanel
+
+	}
+	public void SelectEnemyTarget(){
+		curTarget = FindObjectOfType<BaseEnemy> ().gameObject;
+	}
+
+	public void SelectHero1(){
+		curTarget = GameObject.FindGameObjectWithTag("Hero1");
+	}
+
+	public void SelectHero2(){
+		curTarget = GameObject.FindGameObjectWithTag ("Hero2");
+	}
+
+	public void SelectHero3(){
+		curTarget = GameObject.FindGameObjectWithTag ("Hero3");
+	
 	}
 }

@@ -20,4 +20,12 @@ public class DamagerDealer : BaseHero {
         APtext.text = "AP: " + curAction_Points.ToString() + " / " + action_Points.ToString();
 
     }
+
+	public void DmgDealer_Action1(){
+	
+	}
+
+	public void DmgDealer_Action2(){
+	
+	}
 }
